@@ -61,7 +61,7 @@ public  class DataBase {
 	public void FillCategoryTable() {
 		CategoryTable[0][0] = "Tech Questions";   
 		CategoryTable[1][0] = "Category2";
-		CategoryTable[2][0] = "Category3";
+		CategoryTable[2][0] = "Category3";			//edw tha boun onomata katigoriwn
 		CategoryTable[3][0] = "Category4";
 		CategoryTable[4][0] = "Category5";
 		CategoryTable[5][0] = "Category6";
