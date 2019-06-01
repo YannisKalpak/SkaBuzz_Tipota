@@ -9,7 +9,8 @@ public  class DataBase {
 	public String[][] Answers = new String[400][4];
 	public int[] CorrectAnswers = new int[400];
 	public int CurrentQuestion;
-	public String[][] CategoryTable = new String[8][2];
+	public String[] CategoryNames = new String[8];
+	public int[] CategoryPos = new int[8];
 	
 
 	
@@ -42,37 +43,40 @@ public  class DataBase {
 			PickingStack.clear();
 		}
 		
-		for(int i = CurrentCategoryPosition * 50 - 50 ; i < CurrentCategoryPosition * 50 -48 ; i++) { //kanonika einai xwris to -48 apla to ekana gia testarw tis erwthseis poy evala
+		for(int i = CurrentCategoryPosition * 50 - 50 ; i < CurrentCategoryPosition * 50 -48 ; i++) {
 			PickingStack.push(i);
 		}
+		
 			Collections.shuffle(PickingStack);
 	}
 	
 	
 	
 	
-	public boolean CheckAnswer(int PlayerAnswer) {
-		if(PlayerAnswer == CorrectAnswers[CurrentQuestion]) {
+	public boolean CheckAnswer(int PlayerAnswer,int CurrentQuestionPos) {
+		if(PlayerAnswer == CorrectAnswers[CurrentQuestionPos]) {
 			return true;
 		}
 		return false;
 	}
 	
 	public void FillCategoryTable() {
-		CategoryTable[0][0] = "Tech Questions";   
-		CategoryTable[1][0] = "Category2";
-		CategoryTable[2][0] = "Category3";			//edw tha boun onomata katigoriwn
-		CategoryTable[3][0] = "Category4";
-		CategoryTable[4][0] = "Category5";
-		CategoryTable[5][0] = "Category6";
-		CategoryTable[6][0] = "Category7";
-		CategoryTable[7][0] = "Category8";
+		CategoryNames[0] = "Tech Questions";   
+		CategoryNames[1] = "Category2";
+		CategoryNames[2] = "Category3";
+		CategoryNames[3] = "Category4";
+		CategoryNames[4] = "Category5";
+		CategoryNames[5] = "Category6";
+		CategoryNames[6] = "Category7";
+		CategoryNames[7] = "Category8";
 		
 		for(int i =0;i<8;i++) {
-			CategoryTable[i][1] = Integer.toString(i+1);
+			CategoryPos[i] = i+1;
 		}
 		
 	}
 	
+	public void ShowCorrectAnswer(int CurrentQuestion) {
+		System.out.println("Η σωστή απάντηση είναι : " + Answers[CurrentQuestion][CorrectAnswers[CurrentQuestion]] );
+	}
 }	
-	
