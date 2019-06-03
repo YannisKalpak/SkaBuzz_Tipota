@@ -1,0 +1,835 @@
+﻿
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Stack;
+
+public  class DataBase {
+	
+	public Stack<Integer> PickingStack = new Stack<Integer>();
+	public String[] Questions = new String[400];
+	public String[][] Answers = new String[400][4];
+	public int[] CorrectAnswers = new int[400];
+	public int CurrentQuestion;
+	public String[] CategoryNames = new String[8];
+	public int[] CategoryPos = new int[8];
+	
+
+	
+	public DataBase() {
+		FillCategoryTable();
+		
+		
+		Questions[200] = "Τι είδους είναι τα συστήματα Pal και Secam;";
+		Answers[200][0] = "4";
+		Answers[200][1] = "Τηλεοπτικά";
+		Answers[200][2] = "16";
+		Answers[200][3] = "32";
+		
+		CorrectAnswers[200] = 1;
+		
+                Questions[201] = "Σε τι,εκτός από ενισχυτές,έδωσε το επώνυμο του ο Λίο Φέντερ;";
+		Answers[201][0] = "4";
+		Answers[201][1] = "Τηλεοπτικά";
+		Answers[201][2] = "Ηλεκτρικές Κιθάρες";
+		Answers[201][3] = "32";
+		
+		CorrectAnswers[201] = 2;
+                
+                Questions[202] = "Ποια είναι η μόνη λίμνη στην Ελλάδα που έχει ψάρι αθερίνα;";
+		Answers[202][0] = "Η Τριχωνίδα";
+		Answers[202][1] = "Τηλεοπτικά";
+		Answers[202][2] = "16";
+		Answers[202][3] = "32";
+		
+		CorrectAnswers[202] = 0;
+                
+                Questions[203] = "Με τι τρέφονται τα σαρκοφάγα φυτά Δροσερά και Διωναία;";
+		Answers[203][0] = "4";
+		Answers[203][1] = "Με έντομα";
+		Answers[203][2] = "16";
+		Answers[203][3] = "32";
+		
+		CorrectAnswers[203] = 1;
+                
+                Questions[204] = "Τα σαλάχια Μουδιάστρες, εκτός από το να κυνηγούν, γιατί παράγουν ηλεκτρικό ρεύμα;";
+		Answers[204][0] = "4";
+		Answers[204][1] = "Τηλεοπτικά";
+		Answers[204][2] = "16";
+		Answers[204][3] = "Για άμυνα";
+		
+		CorrectAnswers[204] = 3;
+                
+                Questions[205] = "Με ποια μονάδα μετρούνται οι αποστάσεις στο διάστημα;";
+		Answers[205][0] = "4";
+		Answers[205][1] = "Τηλεοπτικά";
+		Answers[205][2] = "Με έτη φωτός";
+		Answers[205][3] = "32";
+		
+		CorrectAnswers[205] = 2;
+                
+                Questions[206] = "Σε ποιο βασίλειο ανήκουν τα είδη Πλευρώτους και Αγκάρικους;";
+		Answers[206][0] = "4";
+		Answers[206][1] = "Τηλεοπτικά";
+		Answers[206][2] = "Των μυκήτων";
+		Answers[206][3] = "32";
+		
+		CorrectAnswers[206] = 2;
+                
+                Questions[207] = "Ποιο ζώο ονομάζεται στην γλώσσα των Αβορίγινων <<Αυτό που δεν πίνει>>, επειδή πίνει ελάχιστα υγρά;";
+		Answers[207][0] = "4";
+		Answers[207][1] = "Τηλεοπτικά";
+		Answers[207][2] = "16";
+		Answers[207][3] = "Τα Κοάλα";
+		
+		CorrectAnswers[207] = 3;
+                
+                Questions[208] = "Ποια είναι τα πιο πυκνά ουράνια σώματα στο διάστημα;";
+		Answers[208][0] = "Οι μαύρες τρύπες";
+		Answers[208][1] = "Τα Άστρα";
+		Answers[208][2] = "16";
+		Answers[208][3] = "32";
+		
+		CorrectAnswers[208] = 0;
+                
+                Questions[209] = "Που βρίσκεται το ραδιοπαρατηρητήριο του Αρεσίμπο, το μεγαλύτερο στον κόσμο;";
+		Answers[209][0] = "4";
+		Answers[209][1] = "Τηλεοπτικά";
+		Answers[209][2] = "Στο Πουέρτο Ρίκο";
+		Answers[209][3] = "32";
+		
+		CorrectAnswers[209] = 2;
+                
+                Questions[210] = "Που βρίσκεται το φαράγγι Γιαλούνγκ Ζάμπο,το μεγαλύτερο στη Γη;";
+		Answers[210][0] = "4";
+		Answers[210][1] = "Τηλεοπτικά";
+		Answers[210][2] = "16";
+		Answers[210][3] = "Στην Κίνα";
+		
+		CorrectAnswers[210] = 3;
+                
+                Questions[211] = "Πόσα πρωτόνια έχει στον πυρήνα του, το Υδρογόνο;";
+		Answers[211][0] = "4";
+		Answers[211][1] = "Ένα";
+		Answers[211][2] = "16";
+		Answers[211][3] = "32";
+		
+		CorrectAnswers[211] = 1;
+                
+                Questions[212] = "Τι ειναι μια ουσία που έχει pH 7;";
+		Answers[212][0] = "Όξινη";
+		Answers[212][1] = "Ουδέτερη";
+		Answers[212][2] = "Αλκαλική";
+		Answers[212][3] = "ΠΑΟΚ";
+		
+		CorrectAnswers[212] = 1;
+                
+                Questions[213] = "Ποια ορμόνη του μεταβολισμού ρυθμίζει το ενεργειακό μόριο της γλυκόζης στο ανθρώπινο σώμα;";
+		Answers[213][0] = "Η Ινσουλίνη";
+		Answers[213][1] = "Τηλεοπτικά";
+		Answers[213][2] = "16";
+		Answers[213][3] = "32";
+		
+		CorrectAnswers[213] = 0;
+                
+                Questions[214] = "Πώς λέγεται στο αυτοκίνητο, το ηλεκτρικό εξάρτημα που παράγει τον σπινθήρα μέσα στους κυλίνδρους;";
+		Answers[214][0] = "4";
+		Answers[214][1] = "Τηλεοπτικά";
+		Answers[214][2] = "Μπουζί";
+		Answers[214][3] = "32";
+		
+		CorrectAnswers[214] = 2;
+                
+                Questions[215] = "Πώς είναι γνωστός ο οπτικός δίσκος υψηλής πυκνότητας;";
+		Answers[215][0] = "4";
+		Answers[215][1] = "Τηλεοπτικά";
+		Answers[215][2] = "16";
+		Answers[215][3] = "DVD";
+		
+		CorrectAnswers[215] = 3;
+                
+                Questions[216] = "Τι ζώο είναι ένα Κόκερ;";
+		Answers[216][0] = "4";
+		Answers[216][1] = "Τηλεοπτικά";
+		Answers[216][2] = "Σκυλί";
+		Answers[216][3] = "32";
+		
+		CorrectAnswers[216] = 2;
+                        
+                Questions[217] = "Πώς λέγεται ο υπερυπολογιστής IBM, που νίκησε στο σκάκι τον Γκάρι Κασπάροφ το 1997;";
+		Answers[217][0] = "Deep Blue";
+		Answers[217][1] = "Τηλεοπτικά";
+		Answers[217][2] = "16";
+		Answers[217][3] = "32";
+		
+		CorrectAnswers[217] = 0;
+                
+                Questions[218] = "Τι είδους είναι τα συστήματα Pal και Secam;";
+		Answers[218][0] = "4";
+		Answers[218][1] = "Τηλεοπτικά";
+		Answers[218][2] = "16";
+		Answers[218][3] = "32";
+		
+		CorrectAnswers[218] = 1;
+                
+                Questions[219] = "Ποιο ειναι το ψηλότερο κτίριο της Νέας Υόρκης;";
+		Answers[219][0] = "4";
+		Answers[219][1] = "Τηλεοπτικά";
+		Answers[219][2] = "16";
+		Answers[219][3] = "Το Empire State Building";
+		
+		CorrectAnswers[219] = 3;
+                
+                Questions[220] = "Που έχει καταγραφεί η υψηλότερη θερμοκρασιά υπό σκιά(58 βαθμοί Κελσίου);";
+		Answers[220][0] = "4";
+		Answers[220][1] = "Στη Λιβύη";
+		Answers[220][2] = "16";
+		Answers[220][3] = "32";
+		
+		CorrectAnswers[220] = 1;
+                
+                Questions[221] = "Ποια απο τα παρακάτω μπορούν να φωτοσυνθέτουν;";
+		Answers[221][0] = "Μανιτάρια";
+		Answers[221][1] = "Πέτρες";
+		Answers[221][2] = "Γαρδένιες";
+		Answers[221][3] = "Λύκοι";
+		
+		CorrectAnswers[221] = 2;
+                
+                Questions[222] = "Πώς λέγονται τα ανδρείκελα που χρησιμοποιούνται για να ελέγξουν στοιχεία στα crash test;";
+		Answers[222][0] = "Dummies";
+		Answers[222][1] = "Τηλεοπτικά";
+		Answers[222][2] = "16";
+		Answers[222][3] = "32";
+		
+		CorrectAnswers[222] = 0;
+                
+                Questions[223] = "Τι κατασκεύασε πρώτη η Motorola, το 1973;";
+		Answers[223][0] = "4";
+		Answers[223][1] = "Τηλεοπτικά";
+		Answers[223][2] = "Το κινητό τηλέφωνο";
+		Answers[223][3] = "32";
+		
+		CorrectAnswers[223] = 2;
+                
+                Questions[224] = "Ποια αρσενικά πουλιά επωάζουν τα αυγά τους;";
+		Answers[224][0] = "4";
+		Answers[224][1] = "Τηλεοπτικά";
+		Answers[224][2] = "Αυτοκρατορικός Πιγκουίνος";
+		Answers[224][3] = "32";
+		
+		CorrectAnswers[224] = 2;
+                
+                Questions[225] = "Τι βάση ποιας θεωρίας του Einstein αποτελεί εξίσωση E=m*C^2;";
+		Answers[225][0] = "4";
+		Answers[225][1] = "Τηλεοπτικά";
+		Answers[225][2] = "Η θεωρία της Σχετικότητας";
+		Answers[225][3] = "32";
+		
+		CorrectAnswers[225] = 2;
+                
+                Questions[226] = "Ποια βόμβα εφυήρε ο Έντουαρντ Κέλλερ;";
+		Answers[226][0] = "Την βόμβα υδρογόνου";
+		Answers[226][1] = "Τηλεοπτικά";
+		Answers[226][2] = "";
+		Answers[226][3] = "32";
+		
+		CorrectAnswers[226] = 0;
+                
+                Questions[227] = "Πώς ονομάζεται η πρώτη περίοδος του Παλαιοζωικού Αιώνα;";
+		Answers[227][0] = "4";
+		Answers[227][1] = "Κάμβριο";
+		Answers[227][2] = "16";
+		Answers[227][3] = "Σιλλούριο";
+		
+		CorrectAnswers[227] = 1;
+                
+                Questions[228] = "Τι πρωτόκολλο επικοινωνίας ειναι το Bluetooth;";
+		Answers[228][0] = "4";
+		Answers[228][1] = "Ασύρματης";
+		Answers[228][2] = "Ενσύρματης";
+		Answers[228][3] = "32";
+		
+		CorrectAnswers[228] = 1;
+                
+                Questions[229] = "Πόσο περίπου είναι το π;";
+		Answers[229][0] = "2,7";
+		Answers[229][1] = "Τηλεοπτικά";
+		Answers[229][2] = "16";
+		Answers[229][3] = "3,14";
+		
+		CorrectAnswers[229] = 3;
+                
+                Questions[230] = "Πως είναι πιο γνωστός ο Ραβδόμορφος Κώδικας;";
+		Answers[230][0] = "BarCode";
+		Answers[230][1] = "Τηλεοπτικά";
+		Answers[230][2] = "16";
+		Answers[230][3] = "32";
+		
+		CorrectAnswers[230] = 0;
+                
+                Questions[231] = "Τι είναι το Software στους Η/Υ;";
+		Answers[231][0] = "4";
+		Answers[231][1] = "Λογισμικό";
+		Answers[231][2] = "16";
+		Answers[231][3] = "32";
+		
+		CorrectAnswers[231] = 1;
+                
+                Questions[232] = "Ποιοι ηλεκτρονικοί υπολογιστές ονομάζονται laptop";
+		Answers[232][0] = "4";
+		Answers[232][1] = "Τηλεοπτικά";
+		Answers[232][2] = "Οι φορητοί";
+		Answers[232][3] = "32";
+		
+		CorrectAnswers[232] = 2;
+                
+                Questions[233] = "Που οφείλεται το φαινόμενο της Παλίρροιας;";
+		Answers[233][0] = "Στην Σελήνη";
+		Answers[233][1] = "Τηλεοπτικά";
+		Answers[233][2] = "16";
+		Answers[233][3] = "32";
+		
+		CorrectAnswers[233] = 0;
+                
+                Questions[234] = "Με ποιο διαστημόπλοιο έγινε η πρώτη αποστολή στην Σελήνη;";
+		Answers[234][0] = "4";
+		Answers[234][1] = "Apollo 13";
+		Answers[234][2] = "16";
+		Answers[234][3] = "Smart 1";
+		
+		CorrectAnswers[234] = 3;
+                
+                Questions[235] = "Πόσα καράτια είναι το μεγαλύτερο, αψεγάδιαστο, ωοειδές Μπριγιάν στον κόσμο;";
+		Answers[235][0] = "24,7";
+		Answers[235][1] = "102,23";
+		Answers[235][2] = "158,98";
+		Answers[235][3] = "98,26";
+		
+		CorrectAnswers[235] = 1;
+                
+                Questions[236] = "Ποιος φούρνος εφευρέθηκε το 1945 στις ΗΠΑ;";
+		Answers[236][0] = "4";
+		Answers[236][1] = "Εβραίων";
+		Answers[236][2] = "Μικροκυμάτων";
+		Answers[236][3] = "32";
+		
+		CorrectAnswers[236] = 2;
+                
+                Questions[237] = "Πώς λέγονται οι ακτίνες που παράγονται όταν συγκρούονται ηλεκτρόνια με πρωτόνια, με πολύ μεγάλες ταχύτητες;";
+		Answers[237][0] = "Ακτίνες Χ";
+		Answers[237][1] = "Τηλεοπτικά";
+		Answers[237][2] = "16";
+		Answers[237][3] = "32";
+		
+		CorrectAnswers[237] = 0;
+                
+                Questions[238] = "Ποιο μουσικό όργανο επινόησαν οι Άραβες;";
+		Answers[238][0] = "Πιάνο";
+		Answers[238][1] = "Βιολί";
+		Answers[238][2] = "Κλασική Κιθάρα";
+		Answers[238][3] = "Γκάιντα";
+		
+		CorrectAnswers[238] = 2;
+                
+                Questions[239] = "Έφτιαχναν ποπ κορν στο Βυζάντιο;";
+		Answers[239][0] = "Πόσιμπολ";
+		Answers[239][1] = "Ναι";
+		Answers[239][2] = "Δεν ήξεραν το καλαμπόκι";
+		Answers[239][3] = "Μόνο αν είχε βούτυρο";
+		
+		CorrectAnswers[239] = 2;
+                
+                Questions[240] = "Ποιο ειναι το μεγαλύτερο και ταχύτερο κρουασιερόπλοιο στον κόσμο;";
+		Answers[240][0] = "4";
+		Answers[240][1] = "Oasis of the Seas";
+		Answers[240][2] = "Queen Mary 2";
+		Answers[240][3] = "32";
+		
+		CorrectAnswers[240] = 1;
+                
+                Questions[241] = "Ποιο χημικό στοιχείο δημιουργεί την λεγόμενη <<Μέθη των δυτών>>;";
+		Answers[241][0] = "4";
+		Answers[241][1] = "Τηλεοπτικά";
+		Answers[241][2] = "16";
+		Answers[241][3] = "Άζωτο";
+		
+		CorrectAnswers[241] = 3;
+                
+                Questions[242] = "Τι παρασκευάζεται που δεν σκουριάζει, αν προσθέσουμε χρώμιο στο χάλυβα;";
+		Answers[242][0] = "Ανοξείδωτο Ατσάλι";
+		Answers[242][1] = "Τηλεοπτικά";
+		Answers[242][2] = "16";
+		Answers[242][3] = "32";
+		
+		CorrectAnswers[242] = 0;
+                
+                Questions[243] = "Ποιο είναι το υψηλότερο ενεργό ηφαίστειο της Ευρώπης;";
+		Answers[243][0] = "Η Αίτνα";
+		Answers[243][1] = "Τηλεοπτικά";
+		Answers[243][2] = "16";
+		Answers[243][3] = "32";
+		
+		CorrectAnswers[243] = 0;
+                
+                Questions[244] = "Πριν από πόσα χρόνια εξαφανίστηκαν οι δεινόσαυροι;";
+		Answers[244][0] = "4";
+		Answers[244][1] = "Τηλεοπτικά";
+		Answers[244][2] = "65 εκατομμύρια";
+		Answers[244][3] = "32";
+		
+		CorrectAnswers[244] = 2;
+                
+                Questions[245] = "Πόσα περίπου χρόνια έζησαν οι δεινόσαυροι στην Γη;";
+		Answers[245][0] = "4";
+		Answers[245][1] = "Τηλεοπτικά";
+		Answers[245][2] = "16";
+		Answers[245][3] = "160 εκατομμύρια";
+		
+		CorrectAnswers[245] = 3;
+                
+                Questions[246] = "Πώς ονομάζεται το πρώτο κλωνοποιημένο ποντίκι;";
+		Answers[246][0] = "Ραλφ";
+		Answers[246][1] = "Σκιπ";
+		Answers[246][2] = "Ματ";
+		Answers[246][3] = "Ντιέγκο";
+		
+		CorrectAnswers[246] = 0;
+                
+                Questions[247] = "Ποιο όργανο του ανθρώπινου σώματος, διατήρει την ισορροπία μας;";
+		Answers[247][0] = "Το μάτι";
+		Answers[247][1] = "Το αυτί";
+		Answers[247][2] = "Η καρδιά";
+		Answers[247][3] = "Τα νεφρά";
+		
+		CorrectAnswers[247] = 1;
+                
+                Questions[248] = "Ποιας εταιρίας αυτοκινήτων είναι το μοντελό Enzo;";
+		Answers[248][0] = "BMW";
+		Answers[248][1] = "Smart";
+		Answers[248][2] = "Ferrari";
+		Answers[248][3] = "Ford";
+		
+		CorrectAnswers[248] = 2;
+                
+                Questions[249] = "Τι είναι το κοράλλι;";
+		Answers[249][0] = "Ζώο";
+		Answers[249][1] = "Φυτό";
+		Answers[249][2] = "Μύκητας";
+		Answers[249][3] = "Βακτήριο";
+		
+		CorrectAnswers[249] = 0;
+                
+		Questions[250] = "Στο παγκόσμιο πρωτάθλημα ρυθμικής γυμναστικής το 2002 στην Νέα Ορλεάνη, η ελληνική ομάδα ποια θέση κατέλαβε στο σύνθετο ατομικό;";
+		Answers[250][0] = "Την 4η";
+		Answers[250][1] = "Την 2η";
+		Answers[250][2] = "Την 3η";
+		Answers[250][3] = "Την 1η";
+		
+		CorrectAnswers[250] = 2;
+                
+                Questions[251] = "Ποια ομάδα κατέκτησε το Τσάμπιονς Λιγκ το 2002;";
+		Answers[251][0] = "4";
+		Answers[251][1] = "Η Ρεάλ Μαδρίτης";
+		Answers[251][2] = "Την 3η θέση";
+		Answers[251][3] = "32";
+		
+		CorrectAnswers[251] = 1;
+                
+                Questions[252] = "Η Εθνική Ομάδα ποιας χώρας λέγεται και <<Σκουάντρα Ατζούρα>>;";
+		Answers[252][0] = "4";
+		Answers[252][1] = "8";
+		Answers[252][2] = "Την 3η θέση";
+		Answers[252][3] = "Της Ιταλίας";
+		
+		CorrectAnswers[252] = 3;
+                
+                Questions[253] = "Σε ποιο άθλημα διακρίνεται ο Καλλίνικος Κρεάνκα;";
+		Answers[253][0] = "4";
+		Answers[253][1] = "8";
+		Answers[253][2] = "Στο Πινγκ Πονγκ";
+		Answers[253][3] = "32";
+		
+		CorrectAnswers[253] = 2;
+                
+                Questions[254] = "Σε ποιο άθλημα αγωνίζεται η Μαρία Σάκκαρη;";
+		Answers[254][0] = "Στο τένις";
+		Answers[254][1] = "8";
+		Answers[254][2] = "Την 3η θέση";
+		Answers[254][3] = "32";
+		
+		CorrectAnswers[254] = 0;
+                
+                Questions[255] = "Σε ποια ολλανδική ομάδα αγωνιζόταν ο Νίκος Μαχλάς πριν παίξει στον Ηρακλή;";
+		Answers[255][0] = "Στον Αγιαξ";
+		Answers[255][1] = "Στην Ιντερ";
+		Answers[255][2] = "Την 3η θέση";
+		Answers[255][3] = "32";
+		
+		CorrectAnswers[255] = 0;
+                
+                Questions[256] = "Πώς λεγόταν το στεφάνι που δινόταν στους Ολυμπιονίκες στην Αρχαία Ελλάδα;";
+		Answers[256][0] = "4";
+		Answers[256][1] = "8";
+		Answers[256][2] = "Την 3η θέση";
+		Answers[256][3] = "Κότινος";
+		
+		CorrectAnswers[256] = 3;
+                
+                Questions[257] = "Σε ποια ομάδα έπαιξε σε όλη την καριέρα του ο Στίβεν Τζέραρντ;";
+		Answers[257][0] = "4";
+		Answers[257][1] = "Στην Λίβερπουλ";
+		Answers[257][2] = "Την 3η θέση";
+		Answers[257][3] = "32";
+		
+		CorrectAnswers[257] = 1;
+                
+                Questions[258] = "Ποια ομάδα της Ιταλίας έχει κατακτήσει τα περισσότερα πρωταθλήματα;";
+		Answers[258][0] = "Η Γιουβέντους";
+		Answers[258][1] = "8";
+		Answers[258][2] = "Την 3η θέση";
+		Answers[258][3] = "32";
+		
+		CorrectAnswers[258] = 1;
+                
+                Questions[259] = "Πώς λέγεται το παιχνίδι που παίζεται με όπλα που εκτοξεύουν μπίλιες χρώματος;";
+		Answers[259][0] = "Paintball";
+		Answers[259][1] = "8";
+		Answers[259][2] = "Την 3η θέση";
+		Answers[259][3] = "32";
+		
+		CorrectAnswers[259] = 0;
+                
+                Questions[259] = "Τι εθνικότητας είναι ο πιλότος της F1 Ντάνιελ Ρικιάρντο;";
+		Answers[259][0] = "4";
+		Answers[259][1] = "8";
+		Answers[259][2] = "Την 3η θέση";
+		Answers[259][3] = "Αυστραλός";
+		
+		CorrectAnswers[259] = 3;
+                
+                Questions[260] = "Που έγιναν οι Χειμερινοί Ολυμπιακοί Αγώνες του 2014;";
+		Answers[260][0] = "4";
+		Answers[260][1] = "8";
+		Answers[260][2] = "Στο Σοτσι";
+		Answers[260][3] = "32";
+		
+		CorrectAnswers[260] = 2;
+                
+                Questions[250] = ";";
+		Answers[260][0] = "4";
+		Answers[260][1] = "8";
+		Answers[260][2] = "Την 3η θέση";
+		Answers[260][3] = "32";
+		
+		CorrectAnswers[260] = 2;
+                
+                Questions[261] = ";";
+		Answers[261][0] = "4";
+		Answers[261][1] = "8";
+		Answers[261][2] = "Την 3η θέση";
+		Answers[261][3] = "32";
+		
+		CorrectAnswers[261] = 2;
+                
+                Questions[262] = ";";
+		Answers[262][0] = "4";
+		Answers[262][1] = "8";
+		Answers[262][2] = "Την 3η θέση";
+		Answers[262][3] = "32";
+		
+		CorrectAnswers[262] = 2;
+                
+                Questions[263] = ";";
+		Answers[263][0] = "4";
+		Answers[263][1] = "8";
+		Answers[263][2] = "Την 3η θέση";
+		Answers[263][3] = "32";
+		
+		CorrectAnswers[263] = 2;
+                
+                Questions[264] = ";";
+		Answers[264][0] = "4";
+		Answers[264][1] = "8";
+		Answers[264][2] = "Την 3η θέση";
+		Answers[264][3] = "32";
+		
+		CorrectAnswers[264] = 2;
+                
+                Questions[265] = ";";
+		Answers[265][0] = "4";
+		Answers[265][1] = "8";
+		Answers[265][2] = "Την 3η θέση";
+		Answers[265][3] = "32";
+		
+		CorrectAnswers[265] = 2;
+                
+                Questions[266] = ";";
+		Answers[266][0] = "4";
+		Answers[266][1] = "8";
+		Answers[266][2] = "Την 3η θέση";
+		Answers[266][3] = "32";
+		
+		CorrectAnswers[266] = 2;
+                
+                Questions[267] = ";";
+		Answers[267][0] = "4";
+		Answers[267][1] = "8";
+		Answers[267][2] = "Την 3η θέση";
+		Answers[267][3] = "32";
+		
+		CorrectAnswers[267] = 2;
+                
+                Questions[268] = ";";
+		Answers[268][0] = "4";
+		Answers[268][1] = "8";
+		Answers[268][2] = "Την 3η θέση";
+		Answers[268][3] = "32";
+		
+		CorrectAnswers[268] = 2;
+                
+                Questions[269] = ";";
+		Answers[269][0] = "4";
+		Answers[269][1] = "8";
+		Answers[269][2] = "Την 3η θέση";
+		Answers[269][3] = "32";
+		
+		CorrectAnswers[269] = 2;
+                
+                Questions[270] = ";";
+		Answers[270][0] = "4";
+		Answers[270][1] = "8";
+		Answers[270][2] = "Την 3η θέση";
+		Answers[270][3] = "32";
+		
+		CorrectAnswers[270] = 2;
+                
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                Questions[250] = ";";
+		Answers[250][0] = "4";
+		Answers[250][1] = "8";
+		Answers[250][2] = "Την 3η θέση";
+		Answers[250][3] = "32";
+		
+		CorrectAnswers[250] = 2;
+                
+           
+                
+                
+		
+	}
+	
+
+	public void CompleteStack(int CurrentCategoryPosition) {
+		
+		if(!PickingStack.empty()) {	
+			PickingStack.clear();
+		}
+		
+		for(int i = CurrentCategoryPosition * 50 - 50 ; i < CurrentCategoryPosition * 50 -48 ; i++) {
+			PickingStack.push(i);
+		}
+		
+			Collections.shuffle(PickingStack);
+	}
+	
+	
+	
+	
+	public boolean CheckAnswer(int PlayerAnswer,int CurrentQuestionPos) {
+		if(PlayerAnswer == CorrectAnswers[CurrentQuestionPos]) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void FillCategoryTable() {
+		CategoryNames[0] = "Tech Questions";   
+		CategoryNames[1] = "Category2";
+		CategoryNames[2] = "Category3";
+		CategoryNames[3] = "Category4";
+		CategoryNames[4] = "Category5";
+		CategoryNames[5] = "Category6";
+		CategoryNames[6] = "Category7";
+		CategoryNames[7] = "Category8";
+		
+		for(int i =0;i<8;i++) {
+			CategoryPos[i] = i+1;
+		}
+		
+	}
+	
+	public void ShowCorrectAnswer(int CurrentQuestion) {
+		System.out.println("Η σωστή απάντηση είναι : " + Answers[CurrentQuestion][CorrectAnswers[CurrentQuestion]] );
+	}
+}

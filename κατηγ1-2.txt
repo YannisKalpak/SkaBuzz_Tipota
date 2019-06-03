@@ -1,0 +1,866 @@
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Stack;
+
+public  class dataBaseClass {
+	
+	public Stack<Integer> PickingStack = new Stack<Integer>();
+	public String[] Questions = new String[400];
+	public String[][] Answers = new String[400][4];
+	public int[] CorrectAnswers = new int[400];
+	public int CurrentQuestion;
+	public String[] CategoryNames = new String[8];
+	public int[] CategoryPos = new int[8];
+	
+
+	
+	public dataBaseClass() {
+		FillCategoryTable();
+		
+		
+		Questions[0] = "Που ζούσαν οι Vikings?";
+		Answers[0][0] = "Σουηδία";
+		Answers[0][1] = "Σουηδία,Νορβηγία,Δανία";
+		Answers[0][2] = "Νορβηγία";
+		Answers[0][3] = "Σουηδία, Νορβηγία";
+		
+		CorrectAnswers[0] = 1;
+		
+		Questions[1] = "Που έφτασε πρώτος ο Νορβηγός Ρόαλντ Άμουνσδεν?";
+		Answers[1][0] = "Γη του Πυρός";
+		Answers[1][1] = "Σιβηρία";
+		Answers[1][2] = "Νότιο Πόλο";
+		Answers[1][3] = "Βόρειο Πόλο";
+		
+		CorrectAnswers[1] = 2;
+                
+                Questions[2] = "Ποιος πρόεδρος κατοικεί στο Λευκό Οίκο?";
+		Answers[2][0] = "Των ΗΠΑ";
+		Answers[2][1] = "Της Αγγλίας";
+		Answers[2][2] = "Της Κίνας";
+		Answers[2][3] = "Της Ρωσίας";
+		
+		CorrectAnswers[2] = 0;
+                
+                Questions[3] = "Σε ποια πόλη της Ιταλίας βρίσκεται η πλατεία του Αγιόυ Μάρκου με την ομόνυμη βασιλική του 11ου αιώνα?";
+		Answers[3][0] = "Στη Φλωρεντία";
+		Answers[3][1] = "Στο Μιλάνο";
+		Answers[3][2] = "Στη Ρώμη";
+		Answers[3][3] = "Στη Βενετία";
+		
+		CorrectAnswers[3] = 3;
+                
+                Questions[4] = "Οι φυλές των Χούτου και Τούτσι σε ποιο κράτος της Αφρικής αντιμάχονται?";
+		Answers[4][0] = "Στη Μοζαμβίκη";
+		Answers[4][1] = "Στη Ρουάντα";
+		Answers[4][2] = "Στην Κένυα";
+		Answers[4][3] = "Στη Μαδαγασκάρη";
+		
+		CorrectAnswers[4] = 1;
+                
+                Questions[5] = "Σε ποια ήπειρο ζει η φυλή των Μασάι?";
+		Answers[5][0] = "Στην Αμερική";
+		Answers[5][1] = "Στην Ασία";
+		Answers[5][2] = "Στην Ευρώπη";
+		Answers[5][3] = "Στην Αφρική";
+		
+		CorrectAnswers[5] = 3;
+                
+                Questions[6] = "Ποια λίμνη από τις Πρέσπες ανήκει σε 3 χώρες?";
+		Answers[6][0] = "Η μεγάλη Πρέσπα";
+		Answers[6][1] = "Η μικρή Πρέσπα";
+		Answers[6][2] = "Η Βεγορίτιδα";
+		Answers[6][3] = "Η Κερκίνη";
+		
+		CorrectAnswers[6] = 0;
+                
+                Questions[7] = "Σε ποιο νόμο βρίσκεται ο νεολιθικός οικισμός Σέσκλο?";
+		Answers[7][0] = "Κατερίνης";
+		Answers[7][1] = "Μαγνησίας";
+		Answers[7][2] = "Τρικάλων";
+		Answers[7][3] = "Αιτωλοακαρνανίας";
+		
+		CorrectAnswers[7] = 1;
+                
+                Questions[8] = "Από ποιά χώρα υιοθέτησε ένα αγοράκι η ηθοποιός Αντζελίνα Τζολί?";
+		Answers[8][0] = "Νεπάλ";
+		Answers[8][1] = "Καναδά";
+		Answers[8][2] = "Καμπότζη";
+		Answers[8][3] = "Λάος";
+		
+		CorrectAnswers[8] = 2;
+                
+                Questions[9] = "Ποιος αρχαιολόγος ανακάλυψε την Τροία";
+		Answers[9][0] = "Χάουαρτ Κάρτερ";
+		Answers[9][1] = "Άρθουρ Έβανς";
+		Answers[9][2] = "Μανώλης Ανδρόνικος";
+		Answers[9][3] = "Ερρίκος Σλήμαν";
+		
+		CorrectAnswers[9] = 3;
+                
+                Questions[10] = "Ποιος λαός ανέπτυξε την άλγεβρα?";
+		Answers[10][0] = "Οι Άραβες";
+		Answers[10][1] = "Οι Αιγύπτιοι";
+		Answers[10][2] = "Οι Έλληνες";
+		Answers[10][3] = "Οι Φοίνικες";
+		
+		CorrectAnswers[10] = 0;
+                
+                Questions[11] = "Ποια είναι η πολυπληθέστερη πόλη στον κόσμο?";
+		Answers[11][0] = "Το Τόκιο";
+		Answers[11][1] = "Το Πεκίνο";
+		Answers[11][2] = "Η Νέα Υόρκη";
+		Answers[11][3] = "Η Κωνσταντινούπολη";
+		
+		CorrectAnswers[11] = 0;
+                
+                Questions[12] = "Σε ποια Ευρωπαϊκή πρωτεύουσα βρίσκεται το πάρκο Χέιζελ?";
+		Answers[12][0] = "Στο Άμστερνταμ";
+		Answers[12][1] = "Στις Βρυξέλλες";
+		Answers[12][2] = "Στο Βερολίνο";
+		Answers[12][3] = "Στο Παρίσι";
+		
+		CorrectAnswers[12] = 1;
+                
+                Questions[13] = "Σε ποια ηληκία ενηλικιώνεται ένα άτομο στην Ελλάδα?";
+		Answers[13][0] = "17";
+		Answers[13][1] = "21";
+		Answers[13][2] = "18";
+		Answers[13][3] = "19";
+		
+		CorrectAnswers[13] = 2;
+                
+                Questions[14] = "Πως λέγεται η χερσόνησος όπου κατοικούν οι Ισπανοί και οι Πορτογάλοι?";
+		Answers[14][0] = "Σκανδιναβική Χερσόνησος";
+		Answers[14][1] = "Ιβηρική Χερσόνησος";
+		Answers[14][2] = "Ιταλική Χερσόνησος";
+		Answers[14][3] = "Βαλκανική Χερσόνησος";
+		
+		CorrectAnswers[14] = 1;
+                
+                Questions[15] = "Σε ποια έρημο ζουν οι Τουαρέγκ?";
+		Answers[15][0] = "Στην Ατακάμα";
+		Answers[15][1] = "Στη Καραγκίγιε";
+		Answers[15][2] = "Στη Γκόμπη";
+		Answers[15][3] = "Στη Σαχάρα";
+		
+		CorrectAnswers[15] = 3;
+                
+                Questions[16] = "Ποιο είναι το νησί του Αιγαίου στο οποίο παράγεται η μαστίχα?";
+		Answers[16][0] = "Η Μυτιλήνη";
+		Answers[16][1] = "Η Χίος";
+		Answers[16][2] = "Η Σαμοθράκη";
+		Answers[16][3] = "Η Κως";
+		
+		CorrectAnswers[16] = 1;
+                
+                Questions[17] = "Πώς ονομάζονται οι αυτόχθονες κάτοικοι της Αυστραλίας?";
+		Answers[17][0] = "Μαορί";
+		Answers[17][1] = "Μασάι";
+		Answers[17][2] = "Αβορίγινες";
+		Answers[17][3] = "Κούτου";
+		
+		CorrectAnswers[17] = 2;
+                
+                Questions[18] = "Σε ποιο μέρος της Ελλάδας βρίσκεται το ακρωτήριο του Κάβο Ντόρο?";
+		Answers[18][0] = "Στην Πελοπόννησο";
+		Answers[18][1] = "Στην Κρήτη";
+		Answers[18][2] = "Στο Βόλο";
+		Answers[18][3] = "Στην Εύβοια";
+		
+		CorrectAnswers[18] = 3;
+                
+                Questions[19] = "Σε ποια χώρα της Λατινικής Αμερικής βρίσκεται η αλμυρή έρημος Ατακάμα,μία απο τις πιο ξηρές περιοχές του πλανήτη?";
+		Answers[19][0] = "Στην Αργεντινή";
+		Answers[19][1] = "Στη Βραζιλία";
+		Answers[19][2] = "Στο Περού";
+		Answers[19][3] = "Στη Χιλή";
+		
+		CorrectAnswers[19] = 3;
+                
+                Questions[20] = "Με ποιο Νόμπελ έχει βραβευτεί ο Δαλάι Λάμα?";
+		Answers[20][0] = "Νόμπλε Ειρήνης";
+		Answers[20][1] = "Νόμπελ Οικονομίας";
+		Answers[20][2] = "Νόμπελ Φυσικής";
+		Answers[20][3] = "Νόμπελ Λογοτεχνίας";
+		
+		CorrectAnswers[20] = 0;
+                
+                Questions[21] = "Πώς έμεινε γνωστή η Δέσποινα Αχλαδιώτου που κάθε πρωί σήκωνε την ελληνική σημαία στην βραχονησίδα της Ρω?";
+		Answers[21][0] = "Η κυρά της Ρόδου";
+		Answers[21][1] = "Η κυρά της Χίου";
+		Answers[21][2] = "Η κυρά της Ρω";
+		Answers[21][3] = "Η κυρά της Κω";
+		
+		CorrectAnswers[21] = 2;
+                
+                Questions[22] = "Σε ποια χώρα βρίσκεται το παλαιολιθικό μνημείο του Στόουνχετζ?";
+		Answers[22][0] = "Στη Δανία";
+		Answers[22][1] = "Στην Ολλανδία";
+		Answers[22][2] = "Στη Μεγάλη Βρετανία";
+		Answers[22][3] = "Στη Σουηδία";
+		
+		CorrectAnswers[22] = 2;
+                
+                Questions[23] = "Σε ποια χώρα βρίσκεται ο ναός Σαολίν με τους ομόνυμους μοναχούς?";
+		Answers[23][0] = "Στην Ιαπωνία";
+		Answers[23][1] = "Στην Κίνα";
+		Answers[23][2] = "Στην Κορέα";
+		Answers[23][3] = "Στη Σιγκαπούρη";
+		
+		CorrectAnswers[23] = 1;
+                
+                Questions[24] = "Ποια είναι η μεγαλύτερη λίμνη γλυκού νερού στην Αφρική?";
+		Answers[24][0] = "Η Νιάτα";
+		Answers[24][1] = "Η Τάνα";
+		Answers[24][2] = "Η Ταγκανίκα";
+		Answers[24][3] = "Η Βικτόρια";
+		
+		CorrectAnswers[24] = 3;
+                
+                Questions[25] = "Ποιος Άγγλος αρχαιολόγος έκανε πρώτος τις ανασκαφές στην Κνωσό?";
+		Answers[25][0] = "Άρθουρ Έβανς";
+		Answers[25][1] = "Μανώλης Ανδρόνικος";
+		Answers[25][2] = "Ερρίκος Σλήμαν";
+		Answers[25][3] = "Χάουαρτ Κάρτερ";
+		
+		CorrectAnswers[25] = 0;
+                
+                Questions[26] = "Ποιο είναι το μοναδικό δάσος στην Ελλάδα που έχει χουρμαδιές?";
+		Answers[26][0] = "Της Κοιλάδας των Τεμπών";
+		Answers[26][1] = "Της Καισαριανής";
+		Answers[26][2] = "Το Βάι";
+		Answers[26][3] = "Των Φαρσάλων";
+		
+		CorrectAnswers[26] = 2;
+                
+                Questions[27] = "Ποιο μέρος,που εμπνεύστηκε ο Disney, χαρακτηρίστηκε ως 'Το πιο χαρούμενο μέρος του κόσμου'?";
+		Answers[27][0] = "Europa Park";
+		Answers[27][1] = "Η Dinseyland";
+		Answers[27][2] = "Gardaland";
+		Answers[27][3] = "Efteling";
+		
+		CorrectAnswers[27] = 1;
+                
+                Questions[28] = "Σε ποια χώρα της Ασίας έγινε πρώτα γνωστό το μετάξι?";
+		Answers[28][0] = "Στην Ιαπωνία";
+		Answers[28][1] = "Στην Κίνα";
+		Answers[28][2] = "Στη Μογγολία";
+		Answers[28][3] = "Στη Μαλαισία";
+		
+		CorrectAnswers[28] = 1;
+                
+                Questions[29] = "Σε ποια χώρα της Αφρικής βρίσκεται το όρος Κιλιμάντζαρο?";
+		Answers[29][0] = "Στη Μπουρκίνα Φάσο";
+		Answers[29][1] = "Στο Μαρόκο";
+		Answers[29][2] = "Στη Τυνησία";
+		Answers[29][3] = "Στην Τανζανία";
+		
+		CorrectAnswers[29] = 3;
+                
+                Questions[30] = "Το ανάκτορο Τοπ Καπί, σε ποια πόλη της Τουρκίας βρίσκεται?";
+		Answers[30][0] = "Στη Σμύρνη";
+		Answers[30][1] = "Στην Άγκυρα";
+		Answers[30][2] = "Στην Κωσταντινούπολη";
+		Answers[30][3] = "Στην Αδριανούπολη";
+		
+		CorrectAnswers[30] = 2;
+                
+                Questions[31] = "Ποιας θρησκείας θεότητα είναι ο Σίβα με τα 4 χέρια?";
+		Answers[31][0] = "Του Ισλάμ";
+		Answers[31][1] = "Του Βουδισμού";
+		Answers[31][2] = "Του Ταοϊσμού";
+		Answers[31][3] = "Του Ινδουισμού";
+		
+		CorrectAnswers[31] = 3;
+                
+                Questions[32] = "Πώς είναι και αλλιώς γνωστό το βουνό Τυμφρηστός ?";
+		Answers[32][0] = "Σμόλικας";
+		Answers[32][1] = "Φαλακρό";
+		Answers[32][2] = "Βελούχι";
+		Answers[32][3] = "Μπούρινος";
+		
+		CorrectAnswers[32] = 2;
+                
+                Questions[33] = "Ποιος λαός της Νέας Ζηλανδίας μαντεύει το μέλλον πετώντας χαρταετό?";
+		Answers[33][0] = "Οι Μαπούτσοι";
+		Answers[33][1] = "Οι Γουαρανοί";
+		Answers[33][2] = "Οι Αβορίγινες";
+		Answers[33][3] = "Οι Μαορί";
+		
+		CorrectAnswers[33] = 3;
+                
+                Questions[34] = "Ποιο χώρο, όπου φιλοξενούνται ζώα,έχει ιδρύσει ο Γάλλος Ζαν Ζακ Λεσουέρ?";
+		Answers[34][0] = "Ενυδρείο Ρόδου";
+		Answers[34][1] = "Το Αττικό Ζωολογικό Πάρκο";
+		Answers[34][2] = "Εθνικό Θαλάσσιο Πάρκο";
+		Answers[34][3] = "Ζωολογηκός κήπος Θεσσαλονίκης";
+		
+		CorrectAnswers[34] = 1;
+                
+                Questions[35] = "Σε ποιο λαό συναντάμε τη λέξη 'καμικάζι'?";
+		Answers[35][0] = "Στους Ιάπωνες";
+		Answers[35][1] = "Στους Κινέζους";
+		Answers[35][2] = "Στους Κορεάτες";
+		Answers[35][3] = "Στους Βιετναμέζους";
+		
+		CorrectAnswers[35] = 0;
+                
+                Questions[36] = "Ποιο πρόβλημα υγέιας είχε ο γνωστός καλλιτέχνης και επιστήμονας Λεονάρτο Ντα Βίντσι?";
+		Answers[36][0] = "Δυσλεξία";
+		Answers[36][1] = "Βαρυκοία";
+		Answers[36][2] = "Αυτισμός";
+		Answers[36][3] = "Φυματίωση";
+		
+		CorrectAnswers[36] = 0;
+                
+                Questions[37] = "Στην Αυστραλία, τι αποκαλούν οι Αβορίγινες 'Ιερό τόπο των ονείρων'?";
+		Answers[37][0] = "Ένα τεράστιο βράχο";
+		Answers[37][1] = "Ένα ψηλό λόφο";
+		Answers[37][2] = "Ένα βαθύ φαράγγι";
+		Answers[37][3] = "Μια μεγάλη λίμνη";
+		
+		CorrectAnswers[37] =0;
+                
+                Questions[38] = "Ποιος Ιταλός εξερεύνησε το Θιβέτ, την Ινδία και άλλες περιοχές άγνωστες στους Ευρωπαίους?";
+		Answers[38][0] = "Ο Χριστόφορος Κολόμβος";
+		Answers[38][1] = "Ο Μάρκο Πόλο";
+		Answers[38][2] = "Ο Λεονάρντο Ντα Βίτσι";
+		Answers[38][3] = "Ο Μιχαήλ Άγγελος";
+		
+		CorrectAnswers[38] = 1;
+                
+                Questions[39] = "Σε ποιο νησί θα συναντήσουμε το σπήλαιο της αποκάλυψης?";
+		Answers[39][0] = "Στην Τύνο";
+		Answers[39][1] = "Στη Σύρο";
+		Answers[39][2] = "Στην Πάτμο";
+		Answers[39][3] = "Στη Νάξο";
+		
+		CorrectAnswers[39] = 2;
+                
+                Questions[40] = "Ποιο νησί βρίσκεται βορειότερα στην Ελλάδα?";
+		Answers[40][0] = "Η Θάσος";
+		Answers[40][1] = "Η Κέρκυρα";
+		Answers[40][2] = "Η Σαμοθράκη";
+		Answers[40][3] = "Η Ιθάκη";
+		
+		CorrectAnswers[40] = 2;
+                
+                Questions[41] = "Ποια είναι η χώρα καταγωγής του Καποέιρα?";
+		Answers[41][0] = "Η Αργεντινή";
+		Answers[41][1] = "Η Βραζιλία";
+		Answers[41][2] = "Η Κολομβία";
+		Answers[41][3] = "Η Βενεζουέλα";
+		
+		CorrectAnswers[41] = 1;
+                
+                Questions[42] = "Που βρίσκεται η χερσόνησος του Γιουκατάν,όπου υπάρχει η αρχαία πόλη Ουσμάλ,μία από τις πιο μεγάλες και ξακουστές πόλεις των Μάγια?";
+		Answers[42][0] = "Στο Εκουαδόρ";
+		Answers[42][1] = "Στην Κόστα Ρίκα";
+		Answers[42][2] = "Στο Περού";
+		Answers[42][3] = "Στο Μεξικό";
+		
+		CorrectAnswers[42] = 3;
+                
+                Questions[43] = "Σε ποια χώρα της Ασίας βρίσκονται τα νησία Χονσού,Σικοκού και Κιουσού?";
+		Answers[43][0] = "Στην Ιαπωνία";
+		Answers[43][1] = "Στις Φιλιππίνες";
+		Answers[43][2] = "Στην Κορέα";
+		Answers[43][3] = "Στην Ταιβάν";
+		
+		CorrectAnswers[43] = 0;
+                
+                Questions[44] = "Σε ποια ήπειρο μία από τις δημοφιλέστερες εκφράσεις είναι το 'Χακούνα ματάτα'?";
+		Answers[44][0] = "Στη Νότια Αμερική";
+		Answers[44][1] = "Στη Βόρεια Αμερική";
+		Answers[44][2] = "Στην Ασία";
+		Answers[44][3] = "Στην Αφρική";
+		
+		CorrectAnswers[44] = 3;
+                
+                Questions[45] = "Στη γιορτή του Αγίου Φιρμίνο στην ισπανική πόλη Παμπλόνα,τι ζώα κυνηγούν τον κόσμο που συμμετέχει?";
+		Answers[45][0] = "Άλογα";
+		Answers[45][1] = "Τίγρεις";
+		Answers[45][2] = "Ταύροι";
+		Answers[45][3] = "Βουβάλια";
+		
+		CorrectAnswers[45] = 2;
+                
+                Questions[46] = "Ποιος αρχαιολόγος ανακάλυψε τον τάφο του Φιλίππου Β'?";
+		Answers[46][0] = "Ο Ερρίκος Σλήμαν";
+		Answers[46][1] = "Ο Μανώλης Ανδρόνικος";
+		Answers[46][2] = "Ο Άρθουρ Έβανς";
+		Answers[46][3] = "Ο Χάουαρντ Κάρτερ";
+		
+		CorrectAnswers[46] = 1;
+                
+                Questions[47] = "Σε ποια πόλη της Ιταλίας ζούσε η οικογένεια των Μεδίκων που συντέλεσε στην άνθηση των τεχνών?";
+		Answers[47][0] = "Στη Φλωρεντία";
+		Answers[47][1] = "Στη Βενετία";
+		Answers[47][2] = "Στη Ρώμη";
+		Answers[47][3] = "Στη Βερόνα";
+		
+		CorrectAnswers[47] = 0;
+                
+                Questions[48] = "Ποιος θρησκευτικός ηγέτης έχει κάνει το γύρο της γης πολλές φορές και έχει επισκεφτεί περίπου 100 χώρες?";
+		Answers[48][0] = "Ο Πάππας Ιωάννης Παύλος ο Β";
+		Answers[48][1] = "Ο Δαλάι Λάμα";
+		Answers[48][2] = "Ο Φραγκίσκος";
+		Answers[48][3] = "Ο Πάππας Βενέδικτος ΙΣΤ'";
+		
+		CorrectAnswers[48] = 0;
+                
+                Questions[49] = "Πώς είναι πιο γνωστά 'Τα νησιά των Χελωνών' που μελέτησε ο Δαρβίνος στα ταξίδια του?";
+		Answers[49][0] = "Νησιά Γκαλαπάγκος";
+		Answers[49][1] = "Μάουι";
+		Answers[49][2] = "Αντίλλες";
+		Answers[49][3] = "Ισπανιόλα";
+		
+		CorrectAnswers[49] = 0;
+                
+                Questions[50] = "?";
+		Answers[50][0] = "";
+		Answers[50][1] = "";
+		Answers[50][2] = "";
+		Answers[50][3] = "";
+		
+		CorrectAnswers[50] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "4";
+		Answers[0][1] = "8";
+		Answers[0][2] = "16";
+		Answers[0][3] = "32";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 3;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 2;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 0;
+                
+                Questions[0] = "?";
+		Answers[0][0] = "";
+		Answers[0][1] = "";
+		Answers[0][2] = "";
+		Answers[0][3] = "";
+		
+		CorrectAnswers[0] = 1;
+		
+	}
+	
+
+	public void CompleteStack(int CurrentCategoryPosition) {
+		
+		if(!PickingStack.empty()) {	
+			PickingStack.clear();
+		}
+		
+		for(int i = CurrentCategoryPosition * 50 - 50 ; i < CurrentCategoryPosition * 50 -48 ; i++) {
+			PickingStack.push(i);
+		}
+		
+			Collections.shuffle(PickingStack);
+	}
+	
+	
+	
+	
+	public boolean CheckAnswer(int PlayerAnswer,int CurrentQuestionPos) {
+		if(PlayerAnswer == CorrectAnswers[CurrentQuestionPos]) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void FillCategoryTable() {
+		CategoryNames[0] = "Tech Questions";   
+		CategoryNames[1] = "Category2";
+		CategoryNames[2] = "Category3";
+		CategoryNames[3] = "Category4";
+		CategoryNames[4] = "Category5";
+		CategoryNames[5] = "Category6";
+		CategoryNames[6] = "Category7";
+		CategoryNames[7] = "Category8";
+		
+		for(int i =0;i<8;i++) {
+			CategoryPos[i] = i+1;
+		}
+		
+	}
+	
+	public void ShowCorrectAnswer(int CurrentQuestion) {
+		System.out.println("Η σωστή απάντηση είναι : " + Answers[CurrentQuestion][CorrectAnswers[CurrentQuestion]] );
+	}
+}
